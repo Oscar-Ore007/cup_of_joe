@@ -4,7 +4,8 @@ class CreateReviews < ActiveRecord::Migration[6.0]
       t.integer :stars
       t.string :title
       t.string :content
-      t.belongs_to_coffee :user
+      t.belongs_to :user, foreign_key: true
+      t.belongs_to :coffee, foreign_key: true 
 
       t.timestamps
     end
