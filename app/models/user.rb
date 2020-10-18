@@ -4,4 +4,8 @@ class User < ApplicationRecord
 
     has_many :coffees #that they have created 
 
+    validates :username, uniqueness: true, presence: true 
+
+    has_secure_password 
+
 end
