@@ -22,9 +22,11 @@
 
     <p>Or create a new Brand: </p>
     <div>
-        f.fields_for :brand do ||
+        <%= f.fields_for :brand do |b| %>
+        <%= b.label :name %>
+        <%= b.text_field :name %>
         <% end %>
     </div>
-
+    <br>
         <%= f.submit  %>
     <% end %>
