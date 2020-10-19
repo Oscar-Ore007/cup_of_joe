@@ -1,0 +1,30 @@
+<h1>Make a new coffee!</h1>
+
+
+
+
+<%= form_for(@coffee) do |f|%>
+    <div>
+    <%= f.label :flavor %>
+    <%= f.text_field :flavor %>
+    </div>
+
+    <div>
+    <%= f.label :description %>
+    <%= f.text_field :description %> 
+    </div>
+
+    <p> Select a Brand that already exist: </p>
+    <div>
+        <%= f.collection_select :brand_id, Brand.all, :id, :name %>
+    </div>
+
+
+    <p>Or create a new Brand: </p>
+    <div>
+        f.fields_for :brand do ||
+        <% end %>
+    </div>
+
+        <%= f.submit  %>
+    <% end %>
