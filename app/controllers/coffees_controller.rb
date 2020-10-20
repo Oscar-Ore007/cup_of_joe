@@ -6,11 +6,13 @@ class CoffeesController < ApplicationController
     end 
 
     def create 
-        @coffee = coffee.new(coffee_params)
+        @coffee = Coffee.new(coffee_params)
+        @coffee.user_id = session[:user_id]
         if @coffee.save 
             redirect_to coffee_path(@coffee)
         else
             render :new 
+        end 
     end 
 
 
