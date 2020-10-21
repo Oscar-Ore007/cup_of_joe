@@ -1,8 +1,11 @@
 class ReviewsController < ApplicationController
 
     def new 
-       @coffee =  Coffee.find_by_id(params[:coffee_id])
+      if @coffee =  Coffee.find_by_id(params[:coffee_id])
        @review = @coffee.reviews.build 
+      else 
+        @review = Review.new 
+      end 
     end 
 
     def create 
@@ -20,7 +23,14 @@ class ReviewsController < ApplicationController
 
     def index 
 
+        if params[:coffee_id]
+            @coffee =  Coffee.find_by_id(params[:coffee_id])
+            @reviews = @coffee.reviews 
+        else
+
+        @reviews = Review.all 
     end 
+end 
 
    
     private 

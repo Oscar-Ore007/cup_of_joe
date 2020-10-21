@@ -1,19 +1,23 @@
-<h1>Add a Review for <%= @review.coffee.flavor %> - <%= @review.coffee.brand.name %></h1>
+<%if params[:coffee_id] %>
+        <h1>Add a Review for <%= @review.coffee.flavor %> - <%= @review.coffee.brand.name %></h1>
+    <% else %>
+        <h1>Create a review</h1>
+    <% end %>
 
 <%= form_for(@review) do |f| %>
     <div>
-    <%= f.label :stars %>
-    <%= f.number_field :stars, min:0, max:5 %>
+        <%= f.label :stars %>
+        <%= f.number_field :stars, min:0, max:5 %>
     </div>
     <br>
     <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %> 
+        <%= f.label :title %>
+        <%= f.text_field :title %> 
     </div>
     <br>
     <div>
-    <%= f.label :content %>
-    <%= f.text_area :content, size: "25x10" %>
+        <%= f.label :content %>
+        <%= f.text_area :content, size: "25x10" %>
     </div>
     <br>
     <%= f.hidden_field :coffee_id %>
