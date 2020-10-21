@@ -6,13 +6,16 @@ class ReviewsController < ApplicationController
     end 
 
     def create 
-        Review.create(review_params)
-        redirect_to review_path(@review)
+        @review = Review.create(review_params)
+        if @review.save #checks if its valid 
+            redirect_to review_path(@review)
+        else 
+            render :new 
+        end 
     end 
 
     def show
-        review belongs_to coffee 
-        @review.coffee  
+       @review = Review.find_by_id(params[:id])
     end 
 
     def index 
