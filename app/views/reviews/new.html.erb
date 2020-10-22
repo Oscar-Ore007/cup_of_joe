@@ -1,11 +1,20 @@
-<%if params[:coffee_id] %>
-        <h1>Add a Review for <%= @review.coffee.flavor %> - <%= @review.coffee.brand.name %></h1>
-    <% else %>
-        <h1>Create a review</h1>
-    <% end %>
+
+<%= display_header(@review)%>
+
+<%= render partial: 'layouts/errors', locals: {object: @review} %>
+
+
 
 <%= form_for(@review) do |f| %>
+  <% if params[:coffee_id] %>
+    <%= f.hidden_field :coffee_id %>
+      <% else %>
     <div>
+      <%= f.label :coffee_id, "Select a Coffee" %>
+      <%= f.collection_select :coffee_id, Coffee.alpha, :id, :flavor_and_brand, include_blank: true %>
+      </div>
+      <% end %>
+      <div>
         <%= f.label :stars %>
         <%= f.number_field :stars, min:0, max:5 %>
     </div>
@@ -20,7 +29,8 @@
         <%= f.text_area :content, size: "25x10" %>
     </div>
     <br>
-    <%= f.hidden_field :coffee_id %>
+
+
 
     <%= f.submit %>
 

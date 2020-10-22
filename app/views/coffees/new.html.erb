@@ -1,6 +1,6 @@
 <h1>Make a new coffee!</h1>
 
-
+<%= render 'layouts/errors', locals: {object: @coffee} %>
 
 
 <%= form_for(@coffee) do |f|%>
