@@ -8,7 +8,7 @@ class CoffeesController < ApplicationController
     def create 
         @coffee = Coffee.new(coffee_params)
         @coffee.user_id = session[:user_id]
-        if @coffee.save 
+        if @coffee.save #This is where validations happen
             redirect_to coffee_path(@coffee)
         else
             render :new 
