@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post '/signup' => 'users#create'
   delete '/logout' => 'sessions#destroy'
 
+  get '/auth/google_oauth2/callback' => 'sessions#ominauth'
+
   resources :reviews
   resources :coffees do 
     resources :reviews, only: [:new, :index]

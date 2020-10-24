@@ -15,6 +15,14 @@ class CoffeesController < ApplicationController
         end 
     end 
 
+    def index 
+        @coffees = Coffee.order_by_rating.includes(:brand)
+    end 
+
+    def show
+        @coffee = Coffee.find_by_id(params[:id])
+    end 
+
 
     private 
 

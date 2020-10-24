@@ -4,8 +4,14 @@ class Coffee < ApplicationRecord
     has_many :reviews 
     has_many :users, through: :reviews #people who have reviewed it
 
-    validates :flavor, presense: true 
+    validates :flavor, presence: true 
     validate :not_a_duplicate 
+
+    scope :order_by_rating, -> {joins(:reviews).group(:id).order('avg(stars) desc')}
+
+    def self.alpha
+        order(:flavor)
+    end 
 
 
     def brand_attributes=(attributes)
